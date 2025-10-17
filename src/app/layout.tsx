@@ -1,9 +1,13 @@
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
+import { Radio_Canada_Big } from 'next/font/google'
 import './globals.css'
 import { generateSEO } from '@/lib/seo'
 
-const inter = Inter({ subsets: ['latin'] })
+const radioCanadaBig = Radio_Canada_Big({ 
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'], // Regular, Medium, SemiBold, Bold
+  variable: '--font-radio-canada',
+})
 
 export const metadata: Metadata = generateSEO()
 
@@ -14,7 +18,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="scroll-smooth">
-      <body className={inter.className}>
+      <body className={radioCanadaBig.className}>
         {children}
       </body>
     </html>
