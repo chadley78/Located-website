@@ -15,7 +15,7 @@ export function Pricing({ plans }: PricingProps) {
       <Container>
         <div className="text-center">
           <h2 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl">
-            Pricing
+            Subscription Info
           </h2>
           <p className="mt-4 text-lg text-gray-600">
             Choose the plan that works best for your family
@@ -72,4 +72,6 @@ export function Pricing({ plans }: PricingProps) {
     </section>
   )
 }
+
+
 

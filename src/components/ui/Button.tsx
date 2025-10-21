@@ -17,15 +17,15 @@ export function Button({
   onClick,
 }: ButtonProps) {
   const baseStyles =
-    'inline-flex items-center justify-center rounded-lg px-6 py-3 text-base font-semibold transition-all focus:outline-none focus:ring-2 focus:ring-offset-2'
+    'inline-flex items-center justify-center rounded-full px-8 py-3 text-base font-semibold transition-all focus:outline-none focus:ring-2 focus:ring-offset-2 min-h-[50px]'
 
   const variants = {
     primary:
-      'bg-blue-600 text-white hover:bg-blue-700 focus:ring-blue-500',
+      'bg-[#7B61FF] text-white hover:bg-[#6B51EF] focus:ring-[#7B61FF] active:scale-95',
     secondary:
-      'bg-gray-800 text-white hover:bg-gray-900 focus:ring-gray-500',
+      'bg-[#FFE36E] text-black hover:bg-[#FFD84E] focus:ring-[#FFE36E] active:scale-95',
     outline:
-      'border-2 border-blue-600 text-blue-600 hover:bg-blue-50 focus:ring-blue-500',
+      'border-2 border-[#7B61FF] text-[#7B61FF] hover:bg-[#7B61FF]/10 focus:ring-[#7B61FF] active:scale-95',
   }
 
   const classes = cn(baseStyles, variants[variant], className)
@@ -44,4 +44,6 @@ export function Button({
     </button>
   )
 }
+
+
 
