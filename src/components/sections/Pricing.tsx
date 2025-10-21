@@ -11,7 +11,7 @@ export function Pricing({ plans }: PricingProps) {
   if (!plans || plans.length === 0) return null
 
   return (
-    <section className="bg-gray-50 py-20 sm:py-32" id="pricing">
+    <section className="py-20 sm:py-32" id="pricing">
       <Container>
         <div className="text-center">
           <h2 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl">

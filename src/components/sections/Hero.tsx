@@ -9,7 +9,7 @@ interface HeroProps {
 
 export function Hero({ hero }: HeroProps) {
   return (
-    <section className="relative bg-gradient-to-b from-blue-50 to-white py-20 sm:py-32">
+    <section className="relative py-20 sm:py-32">
       <Container>
         <div className="grid items-center gap-12 lg:grid-cols-2">
           <div>
@@ -48,4 +48,6 @@ export function Hero({ hero }: HeroProps) {
     </section>
   )
 }
+
+
 
