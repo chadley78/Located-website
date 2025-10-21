@@ -22,7 +22,7 @@ export function Pricing({ plans }: PricingProps) {
           </p>
         </div>
 
-        <div className="mt-16 grid gap-8 lg:grid-cols-3">
+        <div className={`mt-16 grid gap-8 ${plans.length === 1 ? 'lg:grid-cols-1 max-w-md mx-auto' : plans.length === 2 ? 'lg:grid-cols-2 max-w-4xl mx-auto' : 'lg:grid-cols-3'}`}>
           {plans.map((plan) => (
             <Card key={plan._id} highlighted={plan.highlighted}>
               {plan.highlighted && (
