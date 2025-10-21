@@ -38,7 +38,7 @@ export function Hero({ hero }: HeroProps) {
                 src={hero.imageUrl}
                 alt={hero.title}
                 fill
-                className="rounded-2xl object-cover shadow-2xl"
+                className="rounded-2xl object-contain shadow-2xl"
                 priority
               />
             </div>
