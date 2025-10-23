@@ -45,7 +45,7 @@ export default async function TermsOfServicePage() {
             </p>
           )}
           <div className="prose prose-lg max-w-none">
-            <PortableText value={terms.content} />
+            <PortableText content={terms.content} />
           </div>
         </div>
       </div>
