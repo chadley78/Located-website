@@ -1,4 +1,4 @@
-import { sanityClient } from '@/sanity/client'
+import { client } from '@/sanity/client'
 import { termsOfServiceQuery } from '@/sanity/queries'
 import { PortableText } from '@/components/PortableText'
 import { Container } from '@/components/ui/Container'
@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 export const revalidate = 3600 // Revalidate every hour
 
 async function getTermsOfService() {
-  return sanityClient.fetch(termsOfServiceQuery)
+  return client.fetch(termsOfServiceQuery)
 }
 
 export default async function TermsOfServicePage() {
