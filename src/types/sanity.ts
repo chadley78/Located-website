@@ -47,5 +47,11 @@ export interface PrivacyPolicy {
   content: PortableTextBlock[]
 }
 
+export interface TermsOfService {
+  title: string
+  lastUpdated: string
+  content: PortableTextBlock[]
+}
+
 
 

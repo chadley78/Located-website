@@ -2,53 +2,93 @@ import { client } from '@/sanity/client'
 import { termsOfServiceQuery } from '@/sanity/queries'
 import { PortableText } from '@/components/PortableText'
 import { Container } from '@/components/ui/Container'
-import { Metadata } from 'next'
-
-export const metadata: Metadata = {
-  title: 'Terms of Service - Located',
-  description: 'Terms of Service for the Located family location sharing app.',
-  openGraph: {
-    title: 'Terms of Service - Located',
-    description: 'Terms of Service for the Located family location sharing app.',
-    type: 'website',
-  },
-}
+import { Footer } from '@/components/sections/Footer'
+import { generateSEO } from '@/lib/seo'
+import { formatDate } from '@/lib/utils'
+import Link from 'next/link'
+import type { TermsOfService } from '@/types/sanity'
 
 export const revalidate = 3600 // Revalidate every hour
 
 async function getTermsOfService() {
-  return client.fetch(termsOfServiceQuery)
+  try {
+    const termsOfService = await client.fetch<TermsOfService>(termsOfServiceQuery)
+    return termsOfService
+  } catch (error) {
+    console.error('Error fetching terms of service:', error)
+    // Return default data if Sanity is not configured yet
+    return {
+      title: 'Terms of Service',
+      lastUpdated: new Date().toISOString(),
+      content: [],
+    }
+  }
+}
+
+export async function generateMetadata() {
+  const termsOfService = await getTermsOfService()
+  
+  return generateSEO({
+    title: `${termsOfService.title} - Located`,
+    description: 'Read our terms of service to understand the terms and conditions for using Located.',
+  })
 }
 
 export default async function TermsOfServicePage() {
-  const terms = await getTermsOfService()
-
-  if (!terms) {
-    return (
-      <Container>
-        <div className="py-20">
-          <h1 className="text-4xl font-bold text-gray-900 mb-8">Terms of Service</h1>
-          <p className="text-gray-600">Terms of Service content is not available at this time.</p>
-        </div>
-      </Container>
-    )
-  }
+  const termsOfService = await getTermsOfService()
 
   return (
-    <Container>
-      <div className="py-20">
-        <div className="max-w-4xl mx-auto">
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">{terms.title}</h1>
-          {terms.lastUpdated && (
-            <p className="text-gray-600 mb-8">
-              Last updated: {new Date(terms.lastUpdated).toLocaleDateString()}
-            </p>
-          )}
-          <div className="prose prose-lg max-w-none">
-            <PortableText content={terms.content} />
-          </div>
-        </div>
+    <>
+      <div className="bg-white py-12">
+        <Container>
+          <Link
+            href="/"
+            className="inline-flex items-center text-blue-600 hover:text-blue-700"
+          >
+            <svg
+              className="mr-2 h-4 w-4"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M10 19l-7-7m0 0l7-7m-7 7h18"
+              />
+            </svg>
+            Back to Home
+          </Link>
+        </Container>
       </div>
-    </Container>
+
+      <main className="bg-white py-16">
+        <Container>
+          <article className="mx-auto max-w-3xl">
+            <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl">
+              {termsOfService.title}
+            </h1>
+            <p className="mt-4 text-gray-600">
+              Last updated: {formatDate(termsOfService.lastUpdated)}
+            </p>
+            
+            {termsOfService.content && termsOfService.content.length > 0 ? (
+              <div className="mt-10">
+                <PortableText content={termsOfService.content} />
+              </div>
+            ) : (
+              <div className="mt-10">
+                <p className="text-gray-600">
+                  Please configure your terms of service content in Sanity Studio.
+                </p>
+              </div>
+            )}
+          </article>
+        </Container>
+      </main>
+
+      <Footer />
+    </>
   )
 }
