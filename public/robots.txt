@@ -21,3 +21,5 @@ Allow: /
 # Sitemap
 Sitemap: https://located.app/sitemap.xml
 
+
+

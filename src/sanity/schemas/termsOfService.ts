@@ -1,23 +1,24 @@
-import { defineType, defineField } from 'sanity'
+import { defineType } from 'sanity'
 
 export default defineType({
-  name: 'privacyPolicy',
-  title: 'Privacy Policy',
+  name: 'termsOfService',
+  title: 'Terms of Service',
   type: 'document',
   fields: [
-    defineField({
+    {
       name: 'title',
       title: 'Title',
       type: 'string',
+      initialValue: 'Terms of Service',
       validation: (Rule) => Rule.required(),
-    }),
-    defineField({
+    },
+    {
       name: 'lastUpdated',
       title: 'Last Updated',
       type: 'date',
       validation: (Rule) => Rule.required(),
-    }),
-    defineField({
+    },
+    {
       name: 'content',
       title: 'Content',
       type: 'array',
@@ -26,19 +27,19 @@ export default defineType({
           type: 'block',
           styles: [
             { title: 'Normal', value: 'normal' },
+            { title: 'H1', value: 'h1' },
             { title: 'H2', value: 'h2' },
             { title: 'H3', value: 'h3' },
-            { title: 'H4', value: 'h4' },
+            { title: 'Quote', value: 'blockquote' },
           ],
           lists: [
             { title: 'Bullet', value: 'bullet' },
-            { title: 'Numbered', value: 'number' },
+            { title: 'Number', value: 'number' },
           ],
           marks: {
             decorators: [
               { title: 'Strong', value: 'strong' },
               { title: 'Emphasis', value: 'em' },
-              { title: 'Code', value: 'code' },
             ],
             annotations: [
               {
@@ -58,9 +59,19 @@ export default defineType({
         },
       ],
       validation: (Rule) => Rule.required(),
-    }),
+    },
   ],
+  preview: {
+    select: {
+      title: 'title',
+      subtitle: 'lastUpdated',
+    },
+    prepare(selection) {
+      const { title, subtitle } = selection
+      return {
+        title: title || 'Terms of Service',
+        subtitle: subtitle ? `Last updated: ${new Date(subtitle).toLocaleDateString()}` : 'No date',
+      }
+    },
+  },
 })
-
-
-

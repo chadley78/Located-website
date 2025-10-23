@@ -62,6 +62,14 @@ export function Footer() {
                   Privacy Policy
                 </Link>
               </li>
+              <li>
+                <Link
+                  href="/terms-of-service"
+                  className="text-sm text-gray-600 hover:text-gray-900"
+                >
+                  Terms of Service
+                </Link>
+              </li>
             </ul>
           </div>
         </div>
@@ -75,4 +83,6 @@ export function Footer() {
     </footer>
   )
 }
+
+
 

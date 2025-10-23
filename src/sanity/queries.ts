@@ -55,3 +55,13 @@ export const privacyPolicyQuery = groq`
   }
 `
 
+export const termsOfServiceQuery = groq`
+  *[_type == "termsOfService"][0] {
+    title,
+    lastUpdated,
+    content
+  }
+`
+
+
+
