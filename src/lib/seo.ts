@@ -11,7 +11,7 @@ export function generateSEO({
   title = 'Located - Family Location Sharing',
   description = 'Stay connected with your family through real-time location sharing and geofencing.',
   image = '/og-image.png',
-  url = 'https://located.app',
+  url = 'https://locatedapp.info',
 }: SEOProps = {}): Metadata {
   return {
     title,
@@ -42,8 +42,8 @@ export function generateOrganizationSchema() {
     '@context': 'https://schema.org',
     '@type': 'Organization',
     name: 'Located',
-    url: 'https://located.app',
-    logo: 'https://located.app/logo.png',
+    url: 'https://locatedapp.info',
+    logo: 'https://locatedapp.info/logo.png',
     sameAs: [
       // Add social media links when available
     ],
