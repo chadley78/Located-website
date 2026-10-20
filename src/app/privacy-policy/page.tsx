@@ -32,6 +32,7 @@ export async function generateMetadata() {
   return generateSEO({
     title: `${privacyPolicy.title} - Located`,
     description: 'Read our privacy policy to learn how we collect, use, and protect your data.',
+    path: '/privacy-policy',
   })
 }
 

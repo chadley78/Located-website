@@ -31,6 +31,7 @@ export async function generateMetadata() {
   return generateSEO({
     title: `${termsOfService.title} - Located`,
     description: 'Read our terms of service to understand the terms and conditions for using Located.',
+    path: '/terms-of-service',
   })
 }
 

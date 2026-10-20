@@ -1,0 +1,19 @@
+# Located
+
+> Located is a private family location sharing app for parents and kids. It shows a live family map, sends arrival and departure alerts and keeps a 6-month location history. Available on iPhone (iOS 15.6+); Android is coming soon. 7-day free trial, then €9.99 / £9.99 / $9.99 per year for the whole family. Location data is encrypted in transit and at rest, never sold, and the app shows no ads. Built in Ireland. As of October 2026; last reviewed 20 October 2026.
+
+## Key pages
+- [Homepage](https://locatedapp.info/): definition, features, pricing and privacy summary
+- [FAQ](https://locatedapp.info/faq): answers to common parent questions
+- [Privacy explained](https://locatedapp.info/privacy-explained): plain-English data list, retention, no selling, deletion
+- [Located vs Life360](https://locatedapp.info/located-vs-life360): fair comparison
+- [Located vs Apple Find My](https://locatedapp.info/located-vs-find-my): fair comparison
+- [Located vs Google Family Link](https://locatedapp.info/located-vs-google-family-link): fair comparison
+- [Life360 alternatives](https://locatedapp.info/life360-alternatives): which option fits which family
+
+## Legal
+- [Privacy policy](https://locatedapp.info/privacy-policy)
+- [Terms of service](https://locatedapp.info/terms-of-service)
+
+## Get the app
+- [Located on the App Store](https://apps.apple.com/app/id6753875838)
