@@ -1,88 +1,61 @@
 import { client } from '@/sanity/client'
-import {
-  homepageQuery,
-  featuresQuery,
-  pricingPlansQuery,
-  aboutQuery,
-} from '@/sanity/queries'
-import { Hero } from '@/components/sections/Hero'
-import { Features } from '@/components/sections/Features'
-import { Pricing } from '@/components/sections/Pricing'
+import { aboutQuery } from '@/sanity/queries'
 import { About } from '@/components/sections/About'
 import { Footer } from '@/components/sections/Footer'
-import { generateSEO, generateOrganizationSchema, generateSoftwareApplicationSchema } from '@/lib/seo'
-import type { Homepage, Feature, PricingPlan, About as AboutType } from '@/types/sanity'
+import { SiteHeader } from '@/components/aeo/SiteHeader'
+import { JsonLd } from '@/components/aeo/JsonLd'
+import {
+  HomeIntro,
+  BestAppAnswer,
+  HomeFeatures,
+  HomePricing,
+  HomePrivacy,
+} from '@/components/aeo/Home'
+import {
+  generateSEO,
+  generateOrganizationSchema,
+  generateMobileApplicationSchema,
+  generateWebPageSchema,
+  DEFAULT_TITLE,
+  DEFAULT_DESCRIPTION,
+} from '@/lib/seo'
+import type { About as AboutType } from '@/types/sanity'
 
 // Revalidate every hour
 export const revalidate = 3600
 
-async function getHomePageData() {
+// The hero, definition, pricing, features and privacy copy now live in code
+// (src/components/aeo/Home.tsx, src/lib/siteConfig.ts) so every claim is reviewed in
+// version control. Only the "About" section is still read from Sanity.
+async function getAbout() {
   try {
-    const [homepage, features, pricingPlans, about] = await Promise.all([
-      client.fetch<Homepage>(homepageQuery),
-      client.fetch<Feature[]>(featuresQuery),
-      client.fetch<PricingPlan[]>(pricingPlansQuery),
-      client.fetch<AboutType>(aboutQuery),
-    ])
-
-    return { homepage, features, pricingPlans, about }
+    return await client.fetch<AboutType>(aboutQuery)
   } catch (error) {
-    console.error('Error fetching homepage data:', error)
-    // Return default data if Sanity is not configured yet
-    return {
-      homepage: {
-        hero: {
-          title: 'Located',
-          subtitle: 'Stay connected with your family through real-time location sharing.',
-          ctaText: 'Download Now',
-          ctaLink: '#',
-        },
-        seoTitle: 'Located - Family Location Sharing',
-        seoDescription: 'Stay connected with your family through real-time location sharing and geofencing.',
-      },
-      features: [],
-      pricingPlans: [],
-      about: null,
-    }
+    console.error('Error fetching about data:', error)
+    return null
   }
 }
 
-export async function generateMetadata() {
-  const { homepage } = await getHomePageData()
-  
-  return generateSEO({
-    title: homepage.seoTitle,
-    description: homepage.seoDescription,
-  })
-}
+export const metadata = generateSEO({ title: DEFAULT_TITLE, description: DEFAULT_DESCRIPTION })
 
 export default async function HomePage() {
-  const { homepage, features, pricingPlans, about } = await getHomePageData()
-
-  const organizationSchema = generateOrganizationSchema()
-  const softwareSchema = generateSoftwareApplicationSchema()
+  const about = await getAbout()
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(organizationSchema),
-        }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(softwareSchema),
-        }}
-      />
+      <JsonLd data={generateOrganizationSchema()} />
+      <JsonLd data={generateMobileApplicationSchema()} />
+      <JsonLd data={generateWebPageSchema({ name: DEFAULT_TITLE, description: DEFAULT_DESCRIPTION, path: '/' })} />
+      <SiteHeader />
       <main>
-        <Hero hero={homepage.hero} />
-        <Features features={features} />
-        <Pricing plans={pricingPlans} />
+        <HomeIntro />
+        <BestAppAnswer />
+        <HomeFeatures />
+        <HomePricing />
+        <HomePrivacy />
         {about && <About about={about} />}
-        <Footer />
       </main>
+      <Footer />
     </>
   )
 }

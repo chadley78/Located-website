@@ -7,11 +7,11 @@ export function Footer() {
   return (
     <footer className="border-t border-gray-200 bg-white py-12">
       <Container>
-        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-5">
           <div>
             <h3 className="text-lg font-semibold text-gray-900">Located</h3>
             <p className="mt-2 text-sm text-gray-600">
-              Family location sharing made simple.
+              Private family location sharing for parents and kids.
             </p>
           </div>
 
@@ -34,6 +34,26 @@ export function Footer() {
                   Pricing
                 </Link>
               </li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 className="text-sm font-semibold text-gray-900">Learn</h4>
+            <ul className="mt-4 space-y-2">
+              {[
+                ['/faq', 'FAQ'],
+                ['/privacy-explained', 'Privacy explained'],
+                ['/life360-alternatives', 'Life360 alternatives'],
+                ['/located-vs-life360', 'Located vs Life360'],
+                ['/located-vs-find-my', 'Located vs Find My'],
+                ['/located-vs-google-family-link', 'Located vs Family Link'],
+              ].map(([href, label]) => (
+                <li key={href}>
+                  <Link href={href} className="text-sm text-gray-600 hover:text-gray-900">
+                    {label}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 

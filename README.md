@@ -192,3 +192,13 @@ For issues or questions, refer to:
 ## License
 
 MIT
+
+## AEO / AI-visibility content (re-review every 60 days)
+
+Facts used by the FAQ, comparison pages, schema, sitemap and `public/llms.txt` live in code:
+`src/lib/siteConfig.ts` (price, trial, retention, dates), `src/content/faq.ts`, and the pages under `src/app/`.
+
+**Every 60 days:** re-check prices, platforms and competitor facts, then bump `siteConfig.lastReviewed`
+(it drives the visible "Last updated" date, schema `dateModified` and sitemap `lastmod`) and the
+"Last reviewed" date in `public/llms.txt`. Claims rules: say "encrypted in transit and at rest", never
+"end-to-end"; never claim "no third-party trackers"; verify features against the iOS app repo.
