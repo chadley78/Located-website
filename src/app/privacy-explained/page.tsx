@@ -23,7 +23,7 @@ export default function PrivacyExplained() {
         <li><strong>Usage:</strong> features used, session duration, error logs and performance data such as crashes.</li>
       </ul>
       <H2>Who can see it</H2>
-      <p>Location is shared only with authorised members of your family group. Parents can see their children’s locations. Children can see parents’ locations only if that is enabled.</p>
+      <p>Location is shared only with authorised members of your family group. Parents can see their children’s locations. Children can’t see their parents’ locations.</p>
       <H2>Never sold, no ads</H2>
       <p>We do not sell your personal information, and Located shows no ads. We use Google Firebase to store data and send push notifications, and Apple processes subscription payments through the App Store.</p>
       <H2>Encryption</H2>

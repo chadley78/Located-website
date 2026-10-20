@@ -22,7 +22,7 @@ export const faqItems: { q: string; a: string }[] = [
   },
   {
     q: 'Can my child see my location?',
-    a: 'Family groups have parent and child roles. Parents can see their children’s locations. Our privacy policy says children can see parents’ locations only if that is enabled.',
+    a: 'No. Family groups have parent and child roles: parents can see their children’s locations, but children can’t see their parents’ locations.',
   },
   {
     q: 'Do you sell location data?',
